@@ -80,7 +80,11 @@ class Mopidy(Player):
 
     def send(self, method: str, **kwargs):
         msg = {"jsonrpc": "2.0", "id": self.id, 'method': method, 'params': dict(kwargs)}
-        return requests.post(self.host, data=json.dumps(msg)).json()
+        res = requests.post(self.host, data=json.dumps(msg)).json()
+        if res.status_code != 200:
+            print("Mopidy returned {}".format(res.status_code), res)
+        else:
+            return res.json()
 
     def get_upcoming(self, count: int = 10):
         tracks = []
