@@ -1,0 +1,11 @@
+from music import Spotify, Mopidy
+
+SPOTIFY_CLIENT_ID = ''
+SPOTIFY_CLIENT_SECRET = ''
+MOPIDY_HOST = '127.0.0.1'
+
+PROVIDER = Spotify(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+PLAYER = Mopidy(MOPIDY_HOST, PROVIDER)
+
+
+SECRET_KEY = 'Something long and random'

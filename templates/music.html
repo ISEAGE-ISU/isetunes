@@ -45,7 +45,7 @@
                 <li><a><span class="text-info">{{ version }}</span></a></li>
                 <li><a id="status_u"></a></li>
                 <li>
-                    {% if current_user.is_authenticated %}
+                    {% if current_user.is_authenticated() %}
                         <a href="/logout">Logout {{ current_user.username }} {% if current_user.admin %}(admin){% endif %}</a>
                     {% else %}
                         <a>Not Logged In</a>
@@ -106,7 +106,7 @@
     </div>
 <br><br><br>
     <div class="col-xs-6">
-        {% if current_user.is_authenticated %}
+        {% if current_user.is_authenticated() %}
             <input id="search" type="text" class="form-control" placeholder="Search for songs, artists, albums" aria-describedby="basic-addon1">
             <div id="loading" class="progress progress-striped active">
                 <div class="progress-bar progress-bar-info" style="width: 100%"></div>
@@ -128,7 +128,7 @@
         {% endif %}
     </div>
     <div class="col-xs-6">
-        {% if current_user.is_authenticated %}
+        {% if current_user.is_authenticated() %}
             <div class="panel panel-primary" id="chat-div">
                 <div class="panel-heading">
                     <h3 class="panel-title">Chat (<span id="chatcount">0</span> online)</h3>

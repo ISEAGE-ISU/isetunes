@@ -34,7 +34,7 @@ login_manager.init_app(app)
 def ws_login_required(f):
     @functools.wraps(f)
     def wrapped(*args, **kwargs):
-        if not current_user.is_authenticated:
+        if not current_user.is_authenticated():
             disconnect()
         else:
             return f(*args, **kwargs)
@@ -222,14 +222,14 @@ def login():
 
 @socketio.on('connect')
 def connect():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated():
         redis.sadd('chatcount', current_user.username)
         emit('chatcount', redis.scard('chatcount'), broadcast=True)
 
 
 @socketio.on('disconnect')
 def disconnect():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated():
         redis.srem('chatcount', current_user.username)
         emit('chatcount', redis.scard('chatcount'), broadcast=True)
 
